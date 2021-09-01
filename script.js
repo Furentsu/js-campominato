@@ -13,8 +13,7 @@
     // FASE PRELIMINARE
     let bombe = [];
     
-    BombsGenerator(16)
-    
+    Difficulty();
     console.log(bombe)
 
     // FASE GAMEPLAY
@@ -69,3 +68,30 @@
             bombe.push(randomNumber);
         }
     }
+
+    function Difficulty() {
+        let difficolta = parseInt(prompt("Seleziona il livello di difficoltà: 1, 2, 3, oppure se ti vuoi ancora più male 4."))
+        
+        while (difficolta <= 0 || difficolta > 3){
+            difficolta = parseInt(prompt("Per favore inserisci il livello corretto di difficoltà: 1, 2, 3, oppure 4!"));
+          }
+          if (isNaN(difficolta)) {
+              alert("Hai voluto scherzare con il fuoco...hai una sola possibilità di vincere. Buona fortuna.")
+                BombsGenerator(99)
+          } else {
+            switch(difficolta) {
+                case 1:
+                    BombsGenerator(25);
+                    break;
+                case 2:
+                    BombsGenerator(50);
+                    break;
+                case 3:
+                    BombsGenerator(75);
+                    break;
+                case 4: 
+                    BombsGenerator(90);
+                    break;
+              }
+          }
+    }   
