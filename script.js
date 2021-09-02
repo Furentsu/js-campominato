@@ -1,14 +1,3 @@
-// Il computer deve generare 16 numeri casuali tra 1 e 100.
-// I numeri non possono essere duplicati.
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, 
-// sempre compreso tra 1 e 100. L’utente non può inserire più volte lo stesso numero.
-// Se il numero è presente nella lista dei numeri generati, la partita termina, 
-// altrimenti si continua chiedendo all’utente un altro numero.  La partita termina quando il giocatore 
-// inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che 
-// l’utente ha inserito un numero consentito.
-
-
 // FASE PRELIMINARE
 let bombe = [];
 gameInitialization();
@@ -54,7 +43,8 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); 
 }
 
-function bombsGenerator(bombs, bombsArray) {
+function bombsGenerator(bombs) {
+    let bombsArray = [];
     while (bombsArray.length != bombs) {
         let randomNumber = getRandomIntInclusive(1,100);
         while (bombsArray.includes(randomNumber)) {
@@ -62,6 +52,7 @@ function bombsGenerator(bombs, bombsArray) {
         }   
         bombsArray.push(randomNumber);
     }
+    return bombsArray;
 }
 
 function gameInitialization() {
@@ -72,19 +63,19 @@ function gameInitialization() {
         }   
         switch(difficolta) {
             case 1:
-                bombsGenerator(16, bombe);
+                bombe = bombsGenerator(16);
                 break;
             case 2:
-                bombsGenerator(32, bombe);
+                bombe = bombsGenerator(32);
                 break;
             case 3:
-                bombsGenerator(48, bombe);
+                bombe = bombsGenerator(48);
                 break;
             case 4: 
-                bombsGenerator(60, bombe);
+                bombe = bombsGenerator(60);
                 break;
             default:
                 alert("Hai voluto scherzare con il fuoco...hai una sola possibilità di vincere. Buona fortuna.")
-                bombsGenerator(99, bombe);
+                bombe = bombsGenerator(99);
             }   
 }
